@@ -1,0 +1,150 @@
+---
+import UmnButton from "/src/assets/umn-long-wordmark.svg";
+import NavButton from "/src/ui/NavButton.astro";
+import ThemeSwitcher from "/src/ui/ThemeSwitcher.astro";
+
+const { current, navigation } = Astro.props;
+---
+
+<header>
+  <a id="umn" href="https://twin-cities.umn.edu/">
+    <UmnButton class="logo" />
+  </a>
+  <div id="header">
+    <a
+      id="unit-name"
+      aria-label="Back to home"
+      aria-current={current == "" && "page"}
+      href="/"
+    >
+      <span abbr="false">Institute of Electrical & Electronics Engineers</span>
+      <span abbr="true">IEEE UMN</span>
+    </a>
+    <div id="buttons">
+      <NavButton />
+      <ThemeSwitcher />
+    </div>
+    <nav id="nav-links">
+      <ul>
+        {
+          navigation.map(({ text, url }) => (
+            <li>
+              <a
+                class="nav-link"
+                aria-current={current == url && "page"}
+                href={url}
+              >
+                {text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    font-family: var(--font-sans);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: oklch(from var(--color-min) l c h / 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--thick-1) solid var(--color-n5);
+  }
+
+  @media print {
+    header {
+      position: relative;
+    }
+  }
+
+  #header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 12px;
+    padding: 8px;
+    margin: auto;
+    max-width: 1024px;
+  }
+
+  #umn {
+    display: block;
+    background: var(--color-n0);
+    border-bottom: var(--thick-1) solid var(--color-n5);
+  }
+
+  .logo {
+    margin: 0 auto;
+    padding: 8px 0;
+    height: 40px;
+  }
+
+  #unit-name {
+    display: block;
+    padding-left: 6px;
+    font-size: 24px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  #unit-name {
+    span[abbr="false"] {
+      display: none;
+    }
+    span[abbr="true"] {
+      display: block;
+    }
+  }
+
+  @media (min-width: 640px) {
+    #unit-name {
+      span[abbr="false"] {
+        display: block;
+      }
+      span[abbr="true"] {
+        display: none;
+      }
+    }
+  }
+
+  nav {
+    ul {
+      display: none;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .nav-link {
+    display: block;
+    border-radius: var(--radius-2);
+    padding: 4px 6px;
+    text-decoration: none;
+  }
+
+  @media not print {
+    .nav-link:hover {
+      background-color: oklch(from var(--color-n1) l c h / 0.75);
+    }
+  }
+
+  nav[open] {
+    grid-column: 1 / -1;
+
+    ul {
+      display: block;
+    }
+  }
+
+  #buttons {
+    display: flex;
+    justify-self: end;
+    align-items: center;
+    gap: 12px;
+  }
+</style>

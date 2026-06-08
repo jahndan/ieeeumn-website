@@ -1,0 +1,22 @@
+{
+  "name": "ieee-website",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fmt": "prettier --write '{content,src}/**/*.{astro,css,md}'",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@lucide/astro": "^1.6.0",
+    "astro": "^6.3.7"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1"
+  },
+  "version": "0.0.1",
+  "type": "module",
+  "packageManager": "pnpm@10.28.1"
+}

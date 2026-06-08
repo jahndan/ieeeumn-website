@@ -1,0 +1,47 @@
+---
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
+
+const data = (await getCollection("past_events")).toSorted(
+  (it) => it.data.title,
+);
+const events = await Promise.all(
+  data.map(async (it) => {
+    const { Content } = await render(it);
+    return { ...it, Content };
+  }),
+);
+
+const frontmatter = {
+  title: "Past Events & Resources",
+};
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <h1>{frontmatter.title}</h1>
+  <p>
+    This page serves to archive an unsorted but curated list of past events and
+    resources you may be interested in.
+  </p>
+  <h2>Table of Contents</h2>
+  <ul>
+    {
+      events.map((it) => (
+        <li>
+          <a href={`#${it.id}`}>{it.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+  <hr />
+  {
+    events.map((it) => (
+      <>
+        {/* TODO <Image src={it.data.image} alt={it.data.title} /> */}
+        <h2 id={it.id}>{it.data.title}</h2>
+        <it.Content />
+      </>
+    ))
+  }
+</CommonLayout>

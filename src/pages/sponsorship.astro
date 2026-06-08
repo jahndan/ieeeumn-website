@@ -1,0 +1,33 @@
+---
+import { Content as Blurb, frontmatter } from "/content/sponsorship/blurb.md";
+
+import { Content as Bronze } from "/content/sponsorship/bronze.md";
+import { Content as Silver } from "/content/sponsorship/silver.md";
+import { Content as Gold } from "/content/sponsorship/gold.md";
+import { Content as Platinum } from "/content/sponsorship/platinum.md";
+
+import { Content as Contact } from "/content/sponsorship/contact.md";
+
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import { getCollection } from "astro:content";
+
+const unsorted = await getCollection("sponsors");
+const bronze = unsorted.filter((it) => it.data.tier == "bronze");
+const silver = unsorted.filter((it) => it.data.tier == "silver");
+const gold = unsorted.filter((it) => it.data.tier == "gold");
+const platinum = unsorted.filter((it) => it.data.tier == "platinum");
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <Blurb />
+  <Bronze />
+  <!-- TODO bronze company icons -->
+  <Silver />
+  <!-- TODO silver company icons -->
+  <Gold />
+  <!-- TODO gold company icons -->
+  <Platinum />
+  <!-- TODO platinum company icons -->
+  <hr />
+  <Contact />
+</CommonLayout>

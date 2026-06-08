@@ -1,0 +1,92 @@
+---
+/** Homepage hero section **/
+
+import { Image } from "astro:assets";
+import hero_image from "/src/assets/hero.png";
+
+import { Content as MissionStatement } from "/content/mission.md";
+---
+
+<section id="hero" class="half-split">
+  <div class="left-half">
+    <h1>IEEE at the University of Minnesota</h1>
+    <MissionStatement />
+    <div id="buttons">
+      <a href="/membership"><button class="solid">Get involved</button></a>
+      <a href="/about-us"><button class="outline">Learn more</button></a>
+    </div>
+  </div>
+  <div class="right-half">
+    <div id="hero-picture">
+      <!-- TODO make a carousel -->
+      <Image
+        src={hero_image}
+        alt="Club members sit at a table working through the details of an example circuit in one of our Reach Out ECE (ROE) workshops."
+      />
+    </div>
+  </div>
+  <style>
+    #hero {
+      height: 750px;
+      max-height: 80svh;
+    }
+
+    #buttons {
+      display: flex;
+      column-gap: 12px;
+    }
+
+    button {
+      padding: 6px 10px;
+    }
+
+    .half-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 32px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    @media (max-width: 850px) {
+      .half-split {
+        grid-template-columns: 1fr;
+      }
+      .right-half {
+        display: none;
+      }
+    }
+
+    .left-half {
+      /* probably could use a simpler CSS selector */
+      h1,
+      p,
+      div {
+        margin: var(--block-spacing) 0;
+      }
+    }
+    .left-half {
+      order: 0;
+      h1 {
+        font-size: 32px;
+      }
+    }
+
+    .right-half {
+      order: 1;
+      img {
+        border: none;
+        margin: auto;
+      }
+    }
+
+    #hero-picture {
+      svg {
+        margin: auto;
+      }
+      div {
+        display: none;
+      }
+    }
+  </style>
+</section>

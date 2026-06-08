@@ -1,0 +1,373 @@
+/* This is a bunch of CSS reset styles, which are applied globally as sensible defaults. */
+
+@layer reset {
+  /* reset box-sizing to border-box for all elements */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+  }
+
+  /* fix scroll behavior for links using /some-page#header-id syntax */
+  [id] {
+    scroll-margin-top: 64px;
+  }
+
+  @media not print {
+    :focus-visible {
+      border-radius: var(--radius-1);
+      outline: var(--thick-1) solid var(--color-a3);
+      outline-offset: 2px;
+    }
+
+    .dark {
+      color-scheme: dark;
+    }
+  }
+
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  article {
+    z-index: 0;
+    max-width: 1024px;
+    padding: 32px;
+    margin: 0 auto;
+    font-family: var(--font-sans);
+    color: var(--color-n8);
+    background-color: var(--color-n0);
+  }
+
+  @media (min-width: 1024px) {
+    article {
+      border-left: var(--thick-1) solid var(--color-n4);
+      border-right: var(--thick-1) solid var(--color-n4);
+    }
+  }
+
+  article {
+    *:first-child {
+      margin-top: 0;
+    }
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* paragraph styles */
+
+  p {
+    text-wrap: pretty;
+    hyphens: auto;
+    margin-top: var(--paragraph-spacing);
+    margin-bottom: var(--paragraph-spacing);
+  }
+
+  /* heading styles */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+    color: var(--color-a8);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+    font-family: var(--font-serif);
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    font-family: var(--font-sans);
+  }
+
+  h1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 14px;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: 28px;
+    letter-spacing: -0.015em;
+    line-height: 1.24;
+  }
+  h3 {
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    line-height: 1.28;
+  }
+  h4 {
+    font-size: 22px;
+    letter-spacing: -0.005em;
+    line-height: 1.32;
+  }
+  h5 {
+    font-size: 20px;
+    line-height: 1.36;
+  }
+  h6 {
+    font-size: 18px;
+    letter-spacing: 0.005em;
+    line-height: 1.4;
+  }
+
+  /* basic styles */
+
+  a {
+    color: var(--color-a8);
+  }
+  @media not print {
+    a:hover {
+      color: var(--color-max);
+    }
+  }
+
+  mark {
+    background-color: var(--color-hl);
+    color: var(--color-n9);
+    padding: 0 1px;
+    border-radius: var(--radius-2);
+  }
+
+  del {
+    text-decoration: line-through;
+    color: oklch(from currentColor calc(l * var(--scalar)) c h);
+  }
+
+  small {
+    font-size: 0.75em;
+    color: oklch(from currentColor calc(l * var(--scalar)) c h);
+  }
+
+  sup,
+  sub {
+    font-size: 0.5em;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color: var(--color-n7);
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* list styles */
+
+  ul {
+    list-style-type: circle;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+  ul,
+  ol {
+    padding-left: 32px;
+    margin-top: var(--paragraph-spacing);
+    margin-bottom: var(--paragraph-spacing);
+  }
+  li {
+    margin-bottom: 2px;
+    margin-top: 2px;
+  }
+
+  /* table styles */
+
+  table {
+    --table-radius: var(--radius-2);
+    font-size: 15px;
+    margin: var(--paragraph-spacing) auto;
+    overflow: scroll;
+    border: var(--thick-1) solid var(--color-n3);
+    border-radius: var(--table-radius);
+    padding: 2px 1px;
+    td {
+      vertical-align: top;
+      border-radius: var(--table-radius);
+      padding: 4px 8px;
+    }
+  }
+  table:has(th:not(:empty)) {
+    /* headered table styles */
+    th {
+      font-size: 0.875em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      text-transform: uppercase;
+      border-radius: var(--table-radius);
+      padding: 4px 8px;
+    }
+  }
+  table:not(:has(th:not(:empty))) {
+    /* headerless table styles */
+    thead {
+      display: none;
+    }
+  }
+  @media not print {
+    th:hover,
+    td:hover {
+      background-color: var(--color-a1);
+    }
+  }
+
+  /* other styles */
+
+  button {
+    border-radius: var(--radius-3);
+    border-width: var(--thick-1);
+    border-style: solid;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  img,
+  iframe {
+    max-height: 75svh;
+    height: auto;
+    width: 100%;
+    margin-top: var(--block-spacing);
+    margin-bottom: var(--block-spacing);
+    border: var(--thick-1) solid var(--color-n3);
+    border-radius: var(--radius-3);
+  }
+  iframe {
+    background: white; /* default to ensure legible contrast */
+  }
+
+  blockquote {
+    margin-top: var(--block-spacing);
+    margin-bottom: var(--block-spacing);
+    border-left: var(--thick-2) solid var(--color-a5);
+    padding: 0 18px;
+
+    font-style: italic;
+    color: oklch(from currentColor calc(l * var(--scalar)) c h);
+
+    em {
+      font-style: normal;
+    }
+  }
+
+  details {
+    margin-top: var(--block-spacing);
+    margin-bottom: var(--block-spacing);
+  }
+
+  /* pre/code styles */
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9375em;
+    color: var(--color-n8);
+    background-color: oklch(from var(--color-n1) l c h / 0.5);
+    border: var(--thick-0) dashed var(--color-n4);
+    border-radius: var(--radius-2);
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+
+  pre {
+    font-family: var(--font-mono);
+    line-height: 1.4;
+    color: var(--color-n9);
+    border: var(--thick-1) solid var(--color-n5);
+    border-radius: var(--radius-3);
+    padding: 24px;
+    margin-top: var(--block-spacing);
+    margin-bottom: var(--block-spacing);
+    overflow-x: auto;
+    tab-size: 2;
+
+    code {
+      background: transparent;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      white-space: pre;
+      color: inherit;
+    }
+  }
+
+  /* shiki shenanigans */
+
+  .astro-code {
+    background-color: oklch(from var(--color-min) l c h / 0.25);
+  }
+  .astro-code span {
+    background: none;
+  }
+
+  .astro-code,
+  .astro-code span {
+    color: var(--shiki-light);
+    font-weight: var(--shiki-light-font-weight);
+    text-decoration: var(--shiki-light-text-decoration);
+  }
+
+  @media not print {
+    .dark {
+      .astro-code,
+      .astro-code span {
+        color: var(--shiki-dark);
+        font-weight: var(--shiki-dark-font-weight);
+        text-decoration: var(--shiki-dark-text-decoration);
+      }
+    }
+  }
+}

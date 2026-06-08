@@ -1,0 +1,35 @@
+---
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import IeeeUmn from "/src/assets/ieee-umn.svg";
+import IeeeWordmark from "/src/assets/ieee-wordmark.svg";
+import UmnWordmark from "/src/assets/umn-wordmark.svg";
+
+import { Content as Blurb } from "/content/about-us/blurb.md";
+import { Content as Detail } from "/content/about-us/detail.md";
+import { Content as Committees } from "/content/about-us/committees.md";
+import { Content as CurrentOfficers } from "/content/about-us/officers/current.md";
+import { Content as PreviousOfficers } from "/content/about-us/officers/previous.md";
+
+let frontmatter = {
+  title: "About Us",
+};
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <h1>IEEE UMN</h1>
+  <IeeeUmn />
+  <Blurb />
+  <div
+    style="display: grid; grid-template-columns: 1fr 1fr; place-items: center; column-gap: 24px; padding: 24px;"
+  >
+    <IeeeWordmark />
+    <UmnWordmark />
+  </div>
+  <Detail />
+  <Committees />
+  <CurrentOfficers />
+  <details>
+    <summary>Previous Officers</summary>
+    <PreviousOfficers />
+  </details>
+</CommonLayout>

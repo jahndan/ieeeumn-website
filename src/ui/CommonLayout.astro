@@ -1,0 +1,97 @@
+---
+import "/src/styles/global.css";
+import "/src/styles/reset.css";
+import "/src/styles/utils.css";
+
+import Header from "/src/ui/Header.astro";
+import Footer from "/src/ui/Footer.astro";
+
+const header_nav = [
+  { text: "About Us", url: "/about-us" },
+  { text: "Bulletin", url: "/bulletin" },
+  { text: "Projects", url: "/projects" },
+  { text: "Sponsors", url: "/sponsorship" },
+];
+
+const membership_form = "https://z.umn.edu/MembershipIEEE";
+const proposal_template = "https://z.umn.edu/ProposalTemplateIEEE";
+const footer_nav = [
+  {
+    header: "Get involved",
+    links: [
+      { text: "About our club", url: "/about-us" },
+      { text: "Frequently asked questions", url: "/faqs" },
+      { text: "Upcoming events", url: "/#upcoming-events" },
+      { text: "Past events & resources", url: "/past-events" },
+    ],
+  },
+  {
+    header: "Join and support",
+    links: [
+      { text: "Membership information", url: "/membership" },
+      { text: "Membership application", url: membership_form },
+      { text: "Sponsor information", url: "/sponsorship" },
+      { text: "Officer elections", url: "/elections" },
+    ],
+  },
+  {
+    header: "Technical projects",
+    links: [
+      { text: "Committee mainframe", url: "/projects" },
+      { text: "Proposal template", url: proposal_template },
+      { text: "Current project", url: "/projects/resources/usb-controller" },
+      { text: "Project museum", url: "/projects/exhibits" },
+    ],
+  },
+  {
+    header: "Socials",
+    links: [
+      { text: "Newsletter", url: "https://z.umn.edu/NewsletterIEEE" },
+      { text: "Discord", url: "https://z.umn.edu/DiscordIEEE" },
+      { text: "Instagram", url: "https://z.umn.edu/InstagramIEEE" },
+      { text: "LinkedIn", url: "https://z.umn.edu/LinkedInIEEE" },
+    ],
+  },
+];
+
+const {
+  frontmatter: { title, url },
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <Header current={url} navigation={header_nav} />
+    <main>
+      <slot name="extra" />
+      <article>
+        <slot />
+      </article>
+    </main>
+    <Footer navigation={footer_nav} />
+  </body>
+</html>
+
+<style>
+  body {
+    background-color: white;
+  }
+  @media not print {
+    .dark body {
+      background-color: black;
+    }
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+// Helper component for TableOfContents
+
+const { items } = Astro.props;
+---
+
+<ul>
+  {
+    items.map((item) => (
+      <li>
+        <a href={`#${item.slug}`}>{item.text}</a>
+        {item.children.length > 0 && <Astro.self items={item.children} />}
+      </li>
+    ))
+  }
+</ul>
+<style>
+  ul {
+    --paragraph-spacing: 0;
+  }
+</style>
