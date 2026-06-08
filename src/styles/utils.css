@@ -1,0 +1,31 @@
+/* This is a bunch of utility classes that can be reused across the site. */
+
+a.block {
+  display: block;
+  text-decoration: none;
+}
+
+button.solid {
+  border-color: transparent;
+  background-color: var(--color-a8);
+  color: var(--color-a0);
+}
+@media not print {
+  button.solid:hover {
+    background-color: var(--color-a9);
+    color: var(--color-min);
+  }
+}
+
+button.outline {
+  background-color: var(--color-a0);
+  border-color: var(--color-a4);
+  color: var(--color-a8);
+}
+@media not print {
+  button.outline:hover {
+    background-color: var(--color-a1);
+    border-color: var(--color-a5);
+    color: var(--color-a9);
+  }
+}

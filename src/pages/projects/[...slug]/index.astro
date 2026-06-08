@@ -1,0 +1,58 @@
+---
+import { render } from "astro:content";
+import { get_collection, build_ft, directories } from "../_util.ts";
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import Breadcrumbs from "/src/ui/Breadcrumbs.astro";
+
+export async function getStaticPaths() {
+  const { contents, paths } = await get_collection();
+  const tree = build_ft(paths);
+  const routes = directories(tree);
+  return routes.map((route) => ({
+    params: { slug: route.path },
+    props: { route, file: contents.find((it) => it.id === route.path) },
+  }));
+}
+
+const { slug = "" } = Astro.params;
+const segments = ["projects", ...slug.split("/")];
+
+const { route, file } = Astro.props;
+const rendered = file ? await render(file) : undefined;
+
+const name = file?.data?.title || segments.at(-1) || "Mainframe";
+const frontmatter = {
+  title: `Projects: ${name}`,
+};
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <Breadcrumbs slot="extra" segments={segments} />
+  <h1>{name}</h1>
+  {
+    file && file?.body && (
+      <>
+        <rendered.Content />
+        <hr />
+      </>
+    )
+  }
+  <ul>
+    {
+      route.children.map((c) => (
+        <li>
+          <a href={"/projects" + c.path}>{c.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</CommonLayout>
+<style>
+  ul {
+    font-family: var(--font-mono);
+    color: var(--color-n8);
+  }
+  a {
+    text-decoration: none;
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import { render } from "astro:content";
+import { get_collection, build_ft, files, splitter } from "../_util.ts";
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import Breadcrumbs from "/src/ui/Breadcrumbs.astro";
+import TableOfContents from "/src/ui/TableOfContents.astro";
+
+export async function getStaticPaths() {
+  const { contents, paths } = await get_collection();
+  const tree = build_ft(paths);
+  const routes = files(tree);
+  return routes.map((route) => ({
+    params: splitter(route.path),
+    props: { file: contents.find((it) => it.id === route.path) },
+  }));
+}
+
+const { slug = "", res } = Astro.params;
+const segments = ["projects", ...slug.split("/"), res].filter(Boolean);
+
+const { file } = Astro.props;
+const { Content, headings } = await render(file);
+
+const frontmatter = file.data;
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <Breadcrumbs slot="extra" segments={segments} />
+  <h1>{frontmatter.title}</h1>
+  {
+    headings.length > 0 && (
+      <>
+        <h2>Table of Contents</h2>
+        <TableOfContents headings={headings} />
+      </>
+    )
+  }
+  <Content />
+</CommonLayout>
+<style>
+  :global(article) {
+    padding-top: 30px;
+  }
+</style>

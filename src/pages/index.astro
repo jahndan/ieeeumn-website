@@ -1,0 +1,33 @@
+---
+import CommonLayout from "/src/ui/CommonLayout.astro";
+import SectionHero from "/src/ui/SectionHero.astro";
+import SectionEvents from "/src/ui/SectionEvents.astro";
+import SectionSponsors from "/src/ui/SectionSponsors.astro";
+
+const frontmatter = {
+  title: "IEEE UMN - Home",
+};
+---
+
+<CommonLayout frontmatter={frontmatter}>
+  <SectionHero />
+  <SectionEvents />
+  <SectionSponsors />
+  <style is:global>
+    article {
+      padding: 0;
+
+      section {
+        padding: 32px;
+        border-top: var(--thick-0) dashed var(--color-n3);
+        border-bottom: var(--thick-0) dashed var(--color-n3);
+      }
+      section:first-child {
+        border-top: none;
+      }
+      section:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</CommonLayout>

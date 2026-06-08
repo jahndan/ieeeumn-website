@@ -1,0 +1,107 @@
+---
+const { navigation } = Astro.props;
+---
+
+<footer>
+  <section id="directory">
+    {
+      navigation.map(({ header, links }) => (
+        <div class="column">
+          <div class="col-header">{header}</div>
+          {links.map(({ text, url }) => (
+            <a class="block" href={url}>
+              {text}
+            </a>
+          ))}
+        </div>
+      ))
+    }
+  </section>
+  <hr />
+  <section id="disclaimer">
+    <p>
+      © 2026 Institute of Electrical & Electronics Engineers at the University
+      of Minnesota. All rights reserved.<br />
+      Site developed by <a href="https://jahndan.cc/">Chandan Sankar</a> and maintained
+      by the current club officers.<br />
+      The University of Minnesota is an equal opportunity educator and employer.
+    </p>
+    <div class="flex">
+      <a href="https://privacy.umn.edu">Privacy Statement</a>
+      <a href="https://z.umn.edu/report-accessibility-issue"
+        >Report Web Accessibility Issues</a
+      >
+    </div>
+  </section>
+</footer>
+<style>
+  * {
+    text-align: inherit;
+  }
+
+  footer {
+    font-family: var(--font-sans);
+    padding: 20px 0;
+    border-top: var(--thick-1) solid var(--color-n5);
+    background: var(--color-min);
+  }
+
+  section {
+    padding: 0 12px;
+  }
+
+  #directory {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0 32px;
+    max-width: 1024px;
+    column-gap: 32px;
+  }
+  .column {
+    margin: 6px 0;
+  }
+
+  @media (min-width: 640px) {
+    #directory {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    #directory {
+      grid-template-columns: 1fr 1fr 1fr 150px;
+    }
+    .column {
+      margin: 0;
+    }
+  }
+
+  #directory {
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.75;
+  }
+
+  .col-header {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  hr {
+    background-color: var(--color-n2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  #disclaimer {
+    color: var(--color-n6);
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+</style>

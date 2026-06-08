@@ -1,0 +1,52 @@
+---
+import TocList from "/src/ui/TocList.astro";
+
+const { headings } = Astro.props;
+
+// normalize header levels for sane bullet list hierarchy
+let normalized = [];
+{
+  let level = []; // stack, encodes the hierarchy progressively
+  headings.forEach((h) => {
+    if (level.length <= 0 || h.depth > level.at(-1)) {
+      // grow the stack by one level
+      level.push(h.depth);
+    } else if (h.depth == level.at(-1)) {
+      // noop: stack depth matches current level
+    } else {
+      // clear the stack (do NOT nest headings deeply)
+      level = [h.depth];
+    }
+    normalized.push({ ...h, depth: level.length });
+  });
+}
+
+function nest(items) {
+  const root = [];
+  const stack = [];
+
+  for (const item of items) {
+    const node = { ...item, children: [] };
+
+    while (stack.length && stack[stack.length - 1].depth >= node.depth) {
+      stack.pop();
+    }
+
+    if (stack.length === 0) {
+      root.push(node);
+    } else {
+      stack[stack.length - 1].children.push(node);
+    }
+
+    stack.push(node);
+  }
+
+  return root;
+}
+
+const tree = nest(normalized);
+---
+
+<nav>
+  <TocList items={tree} />
+</nav>

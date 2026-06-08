@@ -1,0 +1,38 @@
+---
+const { segments } = Astro.props;
+const addresses = segments
+  .map((e, n, ts) => ({ e, r: ts.slice(0, n + 1) }))
+  .map(({ e, r }) => ({ e, r: `/${r.join("/")}` }));
+---
+
+<nav>
+  <a href="/">ieee-umn</a>
+  {
+    addresses.map(({ e, r }, i) =>
+      i == addresses.length - 1 ? (
+        <> / {e}</>
+      ) : (
+        <>
+          / <a href={r}>{e}</a>
+        </>
+      ),
+    )
+  }
+</nav>
+<style>
+  nav {
+    max-width: 1024px;
+    border-left: var(--thick-1) solid var(--color-n4);
+    border-right: var(--thick-1) solid var(--color-n4);
+    border-bottom: var(--thick-1) dashed var(--color-n3);
+    margin: 0 auto;
+    padding: 4px 12px;
+
+    font-family: var(--font-mono);
+    color: var(--color-n8);
+    background: var(--color-n0);
+  }
+  a {
+    text-decoration: none;
+  }
+</style>

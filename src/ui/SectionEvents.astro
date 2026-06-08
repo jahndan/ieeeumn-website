@@ -1,0 +1,40 @@
+---
+/** Homepage section for events **/
+
+const gcal =
+  "https://calendar.google.com/calendar/embed?src=c_b41556069471bf94fce316b213414a82cd26356a8ea4d514b95fe42b1869b931%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA";
+const newsletter = "https://z.umn.edu/NewsletterIEEE";
+const discord = "https://z.umn.edu/DiscordIEEE";
+const instagram = "https://z.umn.edu/InstagramIEEE";
+---
+
+<section id="upcoming-events">
+  <h2>Upcoming events</h2>
+  <p>
+    These are great social, academic, and professional opportunities you don't
+    want to miss out on!
+  </p>
+  <!-- TODO replace with native component that shows all relevant info and plays nice with dark theme -->
+  <iframe class="gcal-iframe" src={gcal}></iframe>
+  <p>
+    Besides adding our Google Calendar (above), you can also subscribe to our <a
+      href={newsletter}>Mailchimp newsletter</a
+    >, watch for announcements on our <a href={discord}>Discord server</a>, and
+    follow our <a href={instagram}>Instagram account</a>!
+  </p>
+  <p>
+    <small
+      >Looking for <a href="/past-events">slides from a previous event</a>? They
+      may take a couple of weeks to get uploaded.</small
+    >
+  </p>
+  <style>
+    .gcal-iframe {
+      border: var(--thick-1) solid var(--color-n4);
+      border-radius: var(--radius-2);
+      padding: 2px;
+      height: 700px;
+      max-height: 80svh;
+    }
+  </style>
+</section>

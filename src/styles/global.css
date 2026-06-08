@@ -1,0 +1,107 @@
+/* This is a bunch of CSS variables to use as design tokens across the site's styles */
+
+:root {
+  --paragraph-spacing: 8px;
+  --block-spacing: 12px;
+  --font-serif: "Roboto Slab", ui-serif, Georgia, serif, emoji;
+  --font-sans: "Public Sans", ui-sans-serif, Helvetica, sans-serif, emoji;
+  --font-mono: "Roboto Mono", ui-monospace, monospace;
+}
+
+/* SPACING SCALE */
+
+:root {
+  --thick-0: 1pt;
+  --thick-1: 1.5pt;
+  --thick-2: 2pt;
+
+  --radius-1: 3px;
+  --radius-2: 4px;
+  --radius-3: 6px;
+  --radius-4: 8px;
+  --radius-5: 12px;
+  --radius-6: 16px;
+}
+
+:root {
+  --scalar: 1.25;
+}
+@media not print {
+  .dark {
+    --scalar: 0.8;
+  }
+}
+
+/*
+COLOR SCALES:
+- 0-2 background
+- 3-5 borders
+- 6-7 foreground (low contrast)
+- 8-9 foreground (strong contrast)
+*/
+
+:root {
+  --color-accent: oklch(0.37 0.14 21.04);
+
+  --color-a0: oklch(0.98 0.007 21.04);
+  --color-a1: oklch(0.93 0.021 21.04);
+  --color-a2: oklch(0.89 0.041 21.04);
+  --color-a3: oklch(0.85 0.062 21.04);
+  --color-a4: oklch(0.79 0.078 21.04);
+  --color-a5: oklch(0.72 0.096 21.04);
+  --color-a6: oklch(0.64 0.123 21.04);
+  --color-a7: oklch(0.52 0.147 21.04);
+  --color-a8: oklch(0.43 0.131 21.04);
+  --color-a9: oklch(0.34 0.111 21.04);
+
+  --color-neutral: oklch(0.39 0 0);
+
+  --color-n0: oklch(0.98 0 0);
+  --color-n1: oklch(0.93 0 0);
+  --color-n2: oklch(0.89 0 0);
+  --color-n3: oklch(0.85 0 0);
+  --color-n4: oklch(0.79 0 0);
+  --color-n5: oklch(0.72 0 0);
+  --color-n6: oklch(0.64 0 0);
+  --color-n7: oklch(0.52 0 0);
+  --color-n8: oklch(0.41 0 0);
+  --color-n9: oklch(0.32 0 0);
+
+  --color-min: white;
+  --color-max: black;
+  --color-hl: oklch(0.84 0.15 100 / 0.5);
+}
+
+@media not print {
+  .dark {
+    --color-accent: oklch(0.87 0.15 88.68);
+
+    --color-a0: oklch(0.21 0.029 88.68);
+    --color-a1: oklch(0.32 0.073 88.68);
+    --color-a2: oklch(0.36 0.083 88.68);
+    --color-a3: oklch(0.42 0.096 88.68);
+    --color-a4: oklch(0.47 0.108 88.68);
+    --color-a5: oklch(0.51 0.117 88.68);
+    --color-a6: oklch(0.58 0.123 88.68);
+    --color-a7: oklch(0.68 0.145 88.68);
+    --color-a8: oklch(0.77 0.164 88.68);
+    --color-a9: oklch(0.88 0.112 88.68);
+
+    --color-neutral: oklch(0.75 0 0);
+
+    --color-n0: oklch(0.21 0 0);
+    --color-n1: oklch(0.32 0 0);
+    --color-n2: oklch(0.36 0 0);
+    --color-n3: oklch(0.42 0 0);
+    --color-n4: oklch(0.47 0 0);
+    --color-n5: oklch(0.51 0 0);
+    --color-n6: oklch(0.58 0 0);
+    --color-n7: oklch(0.68 0 0);
+    --color-n8: oklch(0.77 0 0);
+    --color-n9: oklch(0.86 0 0);
+
+    --color-min: black;
+    --color-max: white;
+    --color-hl: oklch(0.48 0.15 100 / 0.5);
+  }
+}

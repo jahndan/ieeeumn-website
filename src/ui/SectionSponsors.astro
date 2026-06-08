@@ -1,0 +1,25 @@
+---
+/** Homepage section for sponsors **/
+
+import SponsorGrid from "/src/ui/SponsorGrid.astro";
+import { getCollection } from "astro:content";
+
+const unsorted = await getCollection("sponsors");
+const bronze = unsorted.filter((it) => it.data.tier == "bronze");
+const silver = unsorted.filter((it) => it.data.tier == "silver");
+const gold = unsorted.filter((it) => it.data.tier == "gold");
+const platinum = unsorted.filter((it) => it.data.tier == "platinum");
+---
+
+<section id="sponsors">
+  <h2>Sponsors</h2>
+  <p>IEEE UMN is proudly sponsored by:</p>
+  <h3>Platinum</h3>
+  <SponsorGrid sponsors={platinum} />
+  <h3>Gold</h3>
+  <SponsorGrid sponsors={gold} />
+  <h3>Silver</h3>
+  <SponsorGrid sponsors={silver} />
+  <h3>Bronze</h3>
+  <SponsorGrid sponsors={bronze} />
+</section>

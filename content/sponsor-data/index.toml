@@ -1,0 +1,37 @@
+## This file is used to populate the sponsor grid on the homepage and on the
+## sponsorship info page.
+
+# ["Example, Inc."]
+# tier = "bronze"  # or "silver" or "gold" or "platinum"
+# site = "./example.png"
+# icon = "https://www.example.com"
+
+["CMTA, Inc."]
+tier = "silver"
+icon = "./cmta.png"
+site = "https://www.cmta.com/"
+
+["Marvell Technology, Inc."]
+tier = "gold"
+icon = "./marvell.png"
+site = "https://www.marvell.com/"
+
+["Seagate Technology"]
+tier = "gold"
+icon = "./seagate.png"
+site = "https://www.seagate.com/"
+
+["Samsung SmartThings"]
+tier = "gold"
+icon = "./smartthings.png"
+site = "https://www.samsung.com/us/smartthings/"
+
+["Burns & McDonnell"]
+tier = "gold"
+icon = "./burns-mcdonnell.png"
+site = "https://www.burnsmcd.com/"
+
+["Banner Engineering Corp."]
+tier = "platinum"
+icon = "./banner.png"
+site = "https://www.bannerengineering.com/us/en.html"

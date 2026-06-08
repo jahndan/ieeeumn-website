@@ -1,0 +1,123 @@
+---
+import { Image } from "astro:assets";
+
+const { sponsors } = Astro.props;
+const num = sponsors.length;
+
+const f2 = num > 2 ? (2 - (num % 2)) % 2 : 0;
+const f3 = num > 3 ? (3 - (num % 3)) % 3 : 0;
+const fillers = Array.from({ length: Math.max(f2, f3) }, (_, i) => ({
+  md: i < f2,
+  lg: i < f3,
+}));
+---
+
+<div id="sponsor-grid">
+  {
+    num > 0 ? (
+      sponsors.map((it) => (
+        <a class="item block" href={it.data.site}>
+          <Image
+            class="icon"
+            height={32}
+            width={32}
+            densities={[1, 2]}
+            src={it.data.icon}
+            alt={it.id}
+          />
+          <p>{it.id}</p>
+        </a>
+      ))
+    ) : (
+      <a class="item" href="/sponsorship">
+        <p>
+          None yet, <em>you</em> 🫵 could be the first!
+        </p>
+      </a>
+    )
+  }
+  {
+    fillers.map((it) => (
+      <div
+        class="item filler"
+        data-md={it.md ? "" : undefined}
+        data-lg={it.lg ? "" : undefined}
+      />
+    ))
+  }
+</div>
+
+<style define:vars={{ num }}>
+  #sponsor-grid {
+    display: grid;
+    --default-cols: 1;
+    --cols: min(var(--default-cols), var(--num));
+    --rows: round(up, calc(var(--num) / var(--cols)));
+    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-template-rows: repeat(var(--rows), 64px);
+  }
+
+  .filler {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    #sponsor-grid {
+      --default-cols: 2;
+    }
+
+    @media not (min-width: 1080px) {
+      .filler[data-md] {
+        display: block;
+      }
+    }
+  }
+
+  @media (min-width: 1080px) {
+    #sponsor-grid {
+      --default-cols: 3;
+    }
+
+    .filler[data-lg] {
+      display: block;
+    }
+  }
+</style>
+
+<style>
+  #sponsor-grid {
+    padding: 0;
+    border: var(--color-n3) solid calc(0.5 * var(--thick-1));
+    * {
+      margin: 0;
+    }
+  }
+
+  .item {
+    padding: 16px;
+    border: var(--color-n3) solid calc(0.5 * var(--thick-1));
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: var(--color-n7);
+  }
+
+  @media not print {
+    a:hover {
+      color: var(--color-n8);
+      background: oklch(from var(--color-n1) l c h / 0.5);
+    }
+  }
+
+  .icon {
+    width: 32px;
+    border: var(--color-n4) solid var(--thick-0);
+    border-radius: var(--radius-2);
+    /* use --color-min once all icons have dark/light versions */
+    background: white;
+  }
+</style>

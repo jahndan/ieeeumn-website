@@ -1,0 +1,19 @@
+name: ieee-website
+scripts:
+  astro: astro
+  dev: astro dev
+  build: astro build
+  preview: astro preview
+  fmt: prettier --write '{content,src}/**/*.{astro,css,md}'
+  preinstall: npx only-allow pnpm
+dependencies:
+  '@astrojs/sitemap': ^3.7.3
+  '@lucide/astro': ^1.31.0
+  astro: ^7.2.2
+  sharp: ^0.35.3
+devDependencies:
+  prettier: ^3.9.6
+  prettier-plugin-astro: ^0.14.1
+version: 0.0.1
+type: module
+packageManager: pnpm@11.22.0
